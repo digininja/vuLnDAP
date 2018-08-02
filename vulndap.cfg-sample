@@ -1,0 +1,112 @@
+#################
+# General configuration.
+Debug = true
+
+[webserver]
+	ListenIP = "0.0.0.0"
+	ListenPort = 9090
+
+[ldapclient]
+	BaseDN = "dc=hack,dc=me"
+	BindUser = "cn=webuser,ou=users,dc=hack,dc=me"
+	BindPassword = "webapp"
+	BindHost = "localhost"
+	BindPort = 10389
+
+[ldapserver]
+	ListenIP = "localhost"
+	ListenPort = 10389
+	baseDN = "dc=hack,dc=me"
+
+#################
+# The users section contains a hardcoded list of valid users.
+#	 to create a passSHA256:	 echo -n "mysecret" | openssl dgst -sha256
+[[users]]
+	name = "fred"
+	unixid = 5001
+	primarygroup = 5501
+	description = "CEO"
+	passsha256 = "6478579e37aff45f013e14eeb30b3cc56c72ccdc310123bcdf53e0333e3f416a" # dogood
+	gecos = "Fred Blogs,Manchester,0161 NOT TELLING,fred@digi.ninja"
+	sshkeys = ["ssh-rsa AAAAsurnks7w7eAfufAFuFFsusFAFJEWUfsadfuih7y78yASDFJ0fHMCWB3ZlDx5ispCo44/uikzriYSkPfIbgZXhn5Jn+fXKrTXhwrZ/pgJOGSMo4lXWNvkfdHpvVyHzWtUZXlyf/8lQGYcbI15ZZeNWwvDjQAw7Lf+ijBcoU8w8PDDbtsuumlsoklUoDVyY07hGrW4F+i7d1huj+id1Cd4myWB4OQQNvYaAGJr1YvuETcItGQ9mdB8+sHGs++Tp9c8Ec6VwB9cnWexjpvzAN2BjBPf9NQD7ZbuW5fk4rtZSnL3/KeFarYHo5ZVTrdsU4lxjee4oel9/X3UHa3u4UggM4oQozrdWBZww68s7yiuhSdfuiue fred@useless.inc"]
+
+[[users]]
+	name = "sue"
+	unixid = 5002
+	primarygroup = 5501
+	description = "HR Boss"
+	passsha256 = "652c7dc687d98c9889304ed2e408c74b611e86a40caa51c4b43f1dd5913c5cd0" # mysecret
+	gecos = "Sue Smith,Leeds,0113 NOT TELLING,sue@digi.ninja"
+	sshkeys = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGievu+euto4Xc0wOariX0fHMCWB3ZlDx5ispCo44/uikzriYSkPfIbgZXhn5Jn+fXKrTXhwrZ/pgJOGSMo4lXWNvkfdHpvVyHzWtUZXlyf/8lQGYcbI15ZZeNWwvDjQAw7Lf+ijBcoU8w8PDDbtsuumlsoklUoDVyY07hGrW4F+i7d1huj+id1Cd4myWB4OQQNvYaAGJr1YvuETcItGQ9mdB8+sHGs++Tp9c8Ec6VwB9cnWexjpvzAN2BjBPf9NQD7ZbuW5fk4rtZSnL3/KeFarYHo5ZVTrdsU4lxjee4oel9/X3UHa3u4UggM4oQozrdWBZww6eY3Ss3Qm325i51 sue@useless.inc"]
+
+[[users]]
+	name = "robin"
+	unixid = 5003
+	primarygroup = 5502
+	description = "Sys Admin"
+	passsha256 = "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824" # hello
+	memberOf = 5001
+	gecos = "Robin Wood,Sheffield,0114 NOT TELLING,robin@digi.ninja"
+	sshkeys = ["""-----BEGIN RSA PRIVATE KEY-----
+NIIEogIBAAKCAQEAxonr7vnrraOF3NMDmq4l9HxzAlgd2ZQ8eYrKQqOOP7opM64m
+epD3yG4GV4Z+SZ/n1yq014cK2f6YCThkjKOJV1jb5H3R6b1ch81rVGV5cn//JUBm
+vGyNeWWXjVsLw40AMOy3/oowXKFPMPDww27bLrppbKJJVKA1cmNO4Rq1uBfou3dY
+eo/ondQneJslgeDkEDb2GgBia9WL7hE3CLRkPZnQfPrBxrPvk6fXPBHOlcAfXJ1n
+rY6b8wDdgYwT3/TUA+2W7luX5OK7WUpy9/ynhWq2B6OWVU63bFOJcY3nuKHpff19
+gB2t7uFIIDOKEKM63VgWcMOnmN0rN0Jt9uYudQIDAQABAoH/csdJnt7dYYUn3oIf
+o00apD1OQAyxNRh93cZfKCdmFXGKYFZNrG4i0bzJ7c/TMr0/SyVlZzSrEVweiTYQ
+iz2gKN82QOJ8eKUA2YHoiuIfVBKrbt3MKqKXJ5eUBiScqHDbq20u8fjx/JtFLQYe
+nt3r2Rfr2uH3gvUb8QV4lKrcY5BqMz0OxBj64eeyVW8xt3OPsLMJRTvDT9b7aZ3G
+gyCvrn/h2iMAZlo7p3U8229MT7+8xiKgrscewl0vr8A5e9cHgC7ictrks+a2egpN
+tmt0td2wmt2CmCy9fNQJhs8d6RnWhh2+rJGAUqWhsdbShCn1pYrIxRYxxz280xzG
+o8+BAoGBAOgnsjawgYwlgQCL2gUnSDybUCicSNFVqAdrseNgj1mEvyPIcoSsG9Bb
+gpZxr4JSPJ+DKVBTtSSwTe3gL5D2um4ca/WwUTrLjtxLwLYlFRsBLXHNU26z/P/F
+islkS2uxgBBm9m4GJr7iWvklgJoJEvKmTm0FiR3a5JBQlXS/akSNAoGBANruUMs/
+vGwSeDRZgDaUSlXqEoTlCM5p5FxJ/GeD/D02zZdXGA8z7YOIE2LXDwCYMGNE6r93
+eBO8rByEEI6dAijGRicRhJU3FpyrXt/0P5Twp9FARZPO1lPpWqc4xNS6pb4QMBxG
+yQJDnpp/Euh+8FLryqVrc65MyQKSLapm5zuJAoGAZ4LTlkjq6jcKpti0dBnIvqUt
+o333hcbgbbaaEVzLbcmfg+/rB7bJjARk+tVjwQKz3xeXQyafnOUzSf3sl4E7LL9l
+u52XClUatKTeHxi3qVvEDHrVWYXNJ6m8/YjHjBQPmsCd3f7GJdQ9ZdtP1N544VI/
+u6KVOYeQ47vad7ylQD0CgYEAlKN+qS+bqYA0ql4lpWiyu3frUNzrSLEuQNZejq1W
+pv0pabWklYZWfRyZBJwC/73FcKyFToLFVprdbWBctoiFogB7PH8=
+-----END RSA PRIVATE KEY-----]"""
+	]
+
+#################
+# The groups section contains a hardcoded list of valid users.
+[[groups]]
+	name = "users"
+	unixid = 5501
+
+[[groups]]
+	name = "admins"
+	unixid = 5502
+
+#################
+# Fruits
+[[fruits]]
+	name="banana"
+	description = "yellow and bendy"
+	stock = 10
+
+[[fruits]]
+	name="apple"
+	description = "red and juicy"
+	stock = 12
+
+###############
+# Veg
+[[vegetables]]
+	name="potato"
+	description="brown and nobbly"
+	stock = 42
+
+[[vegetables]]
+	name="carrot"
+	description="orange, loved by rabbits"
+	stock = 1
+
+[[vegetables]]
+	name="courgette"
+	description="wrongly known by Americans as zucchini"
+	stock = 99
