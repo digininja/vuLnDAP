@@ -8,7 +8,7 @@ If you get stuck and need help, I've written a [walkthrough](https://digi.ninja/
 
 If you want to have a play, but do not want to install it yourself, you can use [my copy](https://vulndap.digi.ninja/). Please do not abuse this, the vulnerabilities are in the application, do not expect to get anywhere with port scans or by running Nessus against it.
 
-## Installaion
+## Installation
 
 ```
 go get github.com/digininja/vuLnDAP
