@@ -8,8 +8,8 @@ Debug = true
 
 [ldapclient]
 	BaseDN = "dc=hack,dc=me"
-	BindUser = "cn=webuser,ou=users,dc=hack,dc=me"
-	BindPassword = "webapp"
+	BindUser = "cn=robin,ou=admins,dc=hack,dc=me"
+	BindPassword = "hello"
 	BindHost = "localhost"
 	BindPort = 10389
 
