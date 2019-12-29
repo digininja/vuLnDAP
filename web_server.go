@@ -38,7 +38,7 @@ func (w *WebServer) getHTMLHeader(title string) string {
 }
 
 func (w *WebServer) getHTMLFooter() string {
-	footer := `<p>Lab created by <a href='https://twitter.com/digininja'>Digininja</a>, for more information see <a href='https://digi.ninja/projects/vulndap.php'>the vuLnDAP project</a>.</p>
+	footer := `<hr /><p>Lab created by <a href='https://twitter.com/digininja'>Digininja</a>, for more information see <a href='https://digi.ninja/projects/vulndap.php'>the vuLnDAP project</a>.</p>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-7503551-6"></script>
