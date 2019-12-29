@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"gopkg.in/ldap.v2"
 	"net/http"
-	// "reflect"
-	//	"strings"
 )
 import "github.com/digininja/vuLnDAP/config"
 
