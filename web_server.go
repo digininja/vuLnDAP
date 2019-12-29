@@ -30,7 +30,7 @@ func (w *WebServer) getHTMLHeader(title string) string {
 	header = header + "<head>"
 	header = header + "<title>*TITLE*</title>"
 	header = header + "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\" />"
-	header = header + "<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\" />\""
+	header = header + "<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\" />"
 	header = header + "<head><title>*TITLE*</title></head><body>"
 	header = header + "</head><body>"
 	header = strings.Replace(header, "*TITLE*", title, -1)
