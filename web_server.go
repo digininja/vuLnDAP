@@ -26,18 +26,22 @@ func NewWebServer(config config.Config) WebServer {
 }
 
 func (w *WebServer) getHTMLHeader(title string) string {
-	header := `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>`
-	header = header + "<head><title>*TITLE*</title></head><body>"
+	header := `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">`
+	header = header + `<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">`
+	header = header + "<head>"
+	header = header + "<title>*TITLE*</title>"
+	header = header + "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\" />"
+	header = header + "<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\" />"
+	header = header + "</head><body>"
 	header = strings.Replace(header, "*TITLE*", title, -1)
 	return header
 }
 
 func (w *WebServer) getHTMLFooter() string {
-	footer := `<p>Demo created by <a href='https://twitter.com/digininja'>Digininja</a>, for more information see <a href='https://digi.ninja/projects/vulndap.php'>the vuLnDAP project</a>.</p>
+	footer := `<hr /><p>Lab created by <a href='https://twitter.com/digininja'>Digininja</a>, for more information see <a href='https://digi.ninja/projects/vulndap.php'>the vuLnDAP project</a>.</p>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-7503551-6"></script>
-<script src="/script"></script>
+<script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-7503551-6"></script>
 
 </body></html>`
 	return footer
@@ -579,6 +583,14 @@ func (w *WebServer) handleRequestResources(writer http.ResponseWriter, r *http.R
 	fmt.Fprintf(writer, w.getHTMLFooter())
 }
 
+func appleHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "resources/apple-touch-icon.png")
+}
+
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "resources/favicon.ico")
+}
+
 func (w *WebServer) startWebApp() {
 	http.HandleFunc("/", w.handleRequestIndex) // set route
 	http.HandleFunc("/raw", w.handleRequestRaw)
@@ -587,6 +599,9 @@ func (w *WebServer) startWebApp() {
 	http.HandleFunc("/item", w.handleRequestItem)
 	http.HandleFunc("/resources", w.handleRequestResources)
 	http.HandleFunc("/script", w.handleRequestScript)
+	http.HandleFunc("/favicon.ico", faviconHandler)
+	http.HandleFunc("/apple-touch-icon.png", appleHandler)
+
 	/*
 		not currently used
 		http.HandleFunc("/basic", w.handleRequestBasic)
