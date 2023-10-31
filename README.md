@@ -33,3 +33,48 @@ And if all goes well you'll get a vuLnDAP binary which you can run with:
 ```
 
 The web server starts up listening on port 9090 on all interfaces, this can be changed by updating the values in the webserver section of vulndap.cfg.
+
+
+
+## Building from Source
+
+```
+git clone https://github.com/digininja/vuLnDAP.git
+
+cd vuLnDAP
+```
+
+Clone the repository, then change into that directory
+
+```
+go get 
+```
+
+Download all the necessary 3rd Party Packages
+
+
+```
+go build
+```
+
+Build all the files to create a `./vuLnDAP` binary
+
+
+### Configuration
+
+```
+cp vulndap.cfg-sample vulndap.cfg
+```
+
+Prior to Usage, ensure that a `vulndap.cfg` file exists. For default configurations, refer to `vulndap.cfg-sample`
+
+
+### Usage 
+
+In order to run, ensure that you have successfully built a `./vuLnDAP` binary. If so simply run:
+
+```
+./vuLnDAP
+```
+
+The web server starts up listening on port 9090 on all interfaces, this can be changed by updating the values in the webserver section of vulndap.cfg.
